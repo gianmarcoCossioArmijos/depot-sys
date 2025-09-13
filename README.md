@@ -39,3 +39,27 @@ Cuando se tiene pequeñas partes de material en condiciones idóneas para el uso
 
 ![Diagrama de Caso de Uso](./readme_utils/cuadre_materiales.png)
 ---
+
+## Gestión de Materiales - Modelos de Entidades:
+
+- Colaboradores
+
+  | campo     | tipo         | constraint                |
+  | --------- | ------------ | ------------------------- |
+  | id        | INT          | PRIMARY KEY AUTOINCREMENT |
+  | nombres   | VARCHAR(150) | NOT NULL                  |
+  | apellidos | VARCHAR(150) | NOT NULL                  |
+  | email     | VARCHAR(100) | -                         |
+  | telefono  | CHAR(9)      | NOT NULL                  |
+  | direccion | VARCHAR(100) | NOT NULL                  |
+  | clave     | VARCHAR(255) | UNIQUE                    |
+  | estado    | BOOLEAN      | NOT NULL                  |
+  | rol_id    | INT          | FOREIGN KEY NOT NULL      |
+
+- Roles
+
+  | campo  | tipo     | constraint                |
+  | ------ | -------- | ------------------------- |
+  | id     | SERIAL   | PRIMARY KEY AUTOINCREMENT |
+  | nombre | CHAR(15) | NOT NULL                  |
+  | estado | BOOLEAN  | -                         |
