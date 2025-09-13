@@ -200,7 +200,7 @@ Cuando se tiene pequeñas partes de material en condiciones idóneas para el uso
 
 - Merma
 
-  | CAMPO                 TIPO          | CONSTRAINT                |
+  | CAMPO               | TIPO          | CONSTRAINT                |
   | ------------------- | ------------- | ------------------------- |
   | id_merma            | INT           | PRIMARY KEY AUTOINCREMENT |
   | observacion         | VARCHAR(150)  | -                         |
