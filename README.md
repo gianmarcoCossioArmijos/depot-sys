@@ -44,22 +44,167 @@ Cuando se tiene pequeñas partes de material en condiciones idóneas para el uso
 
 - Colaboradores
 
-  | campo     | tipo         | constraint                |
-  | --------- | ------------ | ------------------------- |
-  | id        | INT          | PRIMARY KEY AUTOINCREMENT |
-  | nombres   | VARCHAR(150) | NOT NULL                  |
-  | apellidos | VARCHAR(150) | NOT NULL                  |
-  | email     | VARCHAR(100) | -                         |
-  | telefono  | CHAR(9)      | NOT NULL                  |
-  | direccion | VARCHAR(100) | NOT NULL                  |
-  | clave     | VARCHAR(255) | UNIQUE                    |
-  | estado    | BOOLEAN      | NOT NULL                  |
-  | rol_id    | INT          | FOREIGN KEY NOT NULL      |
+  | CAMPO           | TIPO         | CONSTRAINT                |
+  | ----------------| ------------ | ------------------------- |
+  | doc_colaborador | CHAR(10)     | PRIMARY KEY NOT NULL      |
+  | nombres         | VARCHAR(150) | NOT NULL                  |
+  | apellidos       | VARCHAR(150) | NOT NULL                  |
+  | email           | VARCHAR(100) | -                         |
+  | telefono        | CHAR(9)      | NOT NULL                  |
+  | direccion       | VARCHAR(100) | NOT NULL                  |
+  | nacimiento      | DATE         | NOT NULL                  |
+  | fecha_ingreso   | DATE         | NOT NULL                  |
+  | fecha_cese      | DATE         | -                         |
+  | cargo           | char(20)     | NOT NULL                  |
+  | clave           | VARCHAR(255) | UNIQUE                    |
+  | estado          | BOOLEAN      | NOT NULL                  |
+  | id_cuadrilla    | INT          | FOREIGN KEY NOT NULL      |
+  | id_rol          | INT          | FOREIGN KEY NOT NULL      |
 
 - Roles
 
-  | campo  | tipo     | constraint                |
+  | CAMPO  | TIPO     | CONSTRAINT                |
   | ------ | -------- | ------------------------- |
-  | id     | SERIAL   | PRIMARY KEY AUTOINCREMENT |
+  | id_rol | INT      | PRIMARY KEY AUTOINCREMENT |
   | nombre | CHAR(15) | NOT NULL                  |
-  | estado | BOOLEAN  | -                         |
+  | estado | BOOLEAN  | NOT NULL                  |
+
+- Cuadrilla
+
+  | CAMPO         | TIPO         | CONSTRAINT                |
+  | ------------- | ------------ | ------------------------- |
+  | id_cuadrilla  | INT          | PRIMARY KEY NOT NULL      |
+  | descripcion   | VARCHAR(150) | -                         |
+  | doc_encargado | CHAR(10)     | FOREIGN KEY NOT NULL      |
+
+- Cliente
+
+  | CAMPO             | TIPO         | CONSTRAINT                |
+  | ----------------- | ------------ | ------------------------- |
+  | ruc_cliente       | CHAR(20)     | PRIMARY KEY NOT NULL      |
+  | razon_social      | VARCHAR(150) | NOT NULL                  |
+  | direccion         | VARCHAR(150) | NOT NULL                  |
+  | telefono          | VARCHAR(10)  | NOT NULL                  |
+  | doc_representante | VARCHAR(10)  | NOT NULL                  |
+  | representante     | VARCHAR(150) | NOT NULL                  |
+
+- Almacen PDI
+
+  | CAMPO             | TIPO         | CONSTRAINT                |
+  | ----------------- | ------------ | ------------------------- |
+  | id_almacen_pdi    | INT          | PRIMARY KEY AUTOINCREMENT |
+  | codigo_pdi        | CHAR(20)     | NOT NULL                  |
+  | descripcion       | VARCHAR(150) | -                         |
+  | ruc_cliente       | CHAR(20)     | FOREIGN KEY NOT NULL      |
+  | estado            | BOOLEAN      | NOT NULL                  |
+
+- Stock de Almacen PDI
+
+  | CAMPO             | TIPO         | CONSTRAINT                |
+  | ----------------- | ------------ | ------------------------- |
+  | id_stock_pdi      | INT          | PRIMARY KEY AUTOINCREMENT |
+  | stock             | DECIMAL      | NOT NULL                  |
+  | estado            | CHAR(50)     | NOT NULL                  |
+  | id_almacen_pdi    | INT          | FOREIGN KEY NOT NULL      |
+  | codigo_material   | CHAR(50)     | FOREIGN KEY NOT NULL      |
+
+- Material
+
+  | CAMPO             | TIPO         | CONSTRAINT                |
+  | ----------------- | ------------ | ------------------------- |
+  | codigo_material   | CHAR(50)     | PRIMARY KEY NOT NULL      |
+  | descripcion       | VARCHAR(250) | NOT NULL                  |
+  | unidad_medida     | CHAR(50)     | NOT NULL                  |
+  | fecha_registro    | DATE         | NOT NULL                  |
+
+- Obra / Trabajo Programado
+
+  | CAMPO             | TIPO         | CONSTRAINT                |
+  | ----------------- | ------------ | ------------------------- |
+  | id_obra           | INT          | PRIMARY KEY AUTOINCREMENT |
+  | tipo_obra         | CHAR(25)     | NOT NULL                  |
+  | descripcion       | VARCHAR(250) | -                         |
+  | ubicacion         | VARCHAR(150) | NOT NULL                  |
+  | estado            | BOOLEAN      | NOT NULL                  |
+  | id_cuadrilla      | INT          | FOREIGN KEY NOT NULL      |
+
+- Stock de Obra / Trabajo Programado
+
+  | CAMPO             | TIPO         | CONSTRAINT                |
+  | ----------------- | ------------ | ------------------------- |
+  | id_stock_obra     | INT          | PRIMARY KEY AUTOINCREMENT |
+  | stock             | DECIMAL      | NOT NULL                  |
+  | id_obra           | INT          | FOREIGN KEY NOT NULL      |
+  | codigo_material   | CHAR(50)     | FOREIGN KEY NOT NULL      |
+
+- Orden de Material
+
+  | CAMPO             | TIPO         | CONSTRAINT                |
+  | ----------------- | ------------ | ------------------------- |
+  | id_orden          | INT          | PRIMARY KEY AUTOINCREMENT |
+  | tipo_orden        | CHAR(50)     | NOT NULL                  |
+  | fecha_registro    | DATE         | NOT NULL                  |
+  | codigo_estado     | INT          | NOT NULL                  |
+  | estado            | CHAR(20)     | NOT NULL                  |
+  | id_almacen_pdi    | INT          | FOREIGN KEY NOT NULL      |
+  | id_obra           | INT          | FOREIGN KEY NOT NULL      |
+
+- Detalle de Orden de Material
+
+  | CAMPO             | TIPO         | CONSTRAINT                |
+  | ----------------- | ------------ | ------------------------- |
+  | id_detalle_orden  | INT          | PRIMARY KEY AUTOINCREMENT |
+  | cantidad          | DECIMAL      | NOT NULL                  |
+  | id_orden          | INT          | FOREIGN KEY NOT NULL      |
+  | codigo_material   | CHAR(50)     | FOREIGN KEY NOT NULL      |
+
+- Confirmacion de Orden de Material
+
+  | CAMPO                | TIPO         | CONSTRAINT                |
+  | -------------------- | ------------ | ------------------------- |
+  | id_confirmacion      | INT          | PRIMARY KEY AUTOINCREMENT |
+  | codigo_ confirmacion | CHAR(20)     | NOT NULL                  |
+  | fecha_registro       | DATE         | NOT NULL                  |
+  | id_orden             | INT          | FOREIGN KEY NOT NULL      |
+
+- Historial de Orden de Material
+
+  | CAMPO                | TIPO         | CONSTRAINT                |
+  | -------------------- | ------------ | ------------------------- |
+  | id_orden_historial   | INT          | PRIMARY KEY AUTOINCREMENT |
+  | descripcion          | VARCHAR(150) | -                         |
+  | fecha_actualizacion  | DATE         | NOT NULL                  |
+  | doc_colaborador      | CHAR(10)     | FOREIGN KEY NOT NULL      |
+  | id_orden             | INT          | FOREIGN KEY NOT NULL      |
+
+- Recepcion de Material
+
+  | CAMPO                | TIPO         | CONSTRAINT                |
+  | -------------------- | ------------ | ------------------------- |
+  | id_recepcion         | INT          | PRIMARY KEY AUTOINCREMENT |
+  | codigo_packing       | CHAR(50)     | NOT NULL                  |
+  | descripcion          | VARCHAR(150) | -                         |
+  | fecha_recepcion      | DATE         | NOT NULL                  |
+  | id_estado            | INT          | NOT NULL                  |
+  | estado               | CHAR(20)     | NOT NULL                  |
+  | id_orden             | INT          | FOREIGN KEY NOT NULL      |
+
+- Detalle de Recepcion de Material
+
+  | CAMPO                | TIPO         | CONSTRAINT                |
+  | -------------------- | ------------ | ------------------------- |
+  | id_detalle_recepcion | INT          | PRIMARY KEY AUTOINCREMENT |
+  | stock                | DECIMAL      | NOT NULL                  |
+  | id_recepcion         | INT          | FOREIGN KEY NOT NULL      |
+  | codigo_material      | CHAR(50)     | FOREIGN KEY NOT NULL      |
+
+- Merma
+
+  | CAMPO                 TIPO          | CONSTRAINT                |
+  | ------------------- | ------------- | ------------------------- |
+  | id_merma            | INT           | PRIMARY KEY AUTOINCREMENT |
+  | observacion         | VARCHAR(150)  | -                         |
+  | cantidad            | DECIMAL       | NOT NULL                  |
+  | id_obra             | INT           | FOREIGN KEY NOT NULL      |
+  | codigo_material     | CHAR(50)      | FOREIGN KEY NOT NULL      |
+
