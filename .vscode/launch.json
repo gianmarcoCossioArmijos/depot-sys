@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ServerConfigApplication<server-config>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.depot.server_config.ServerConfigApplication",
+            "projectName": "server-config",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
