@@ -1,3 +1,23 @@
+services:
+  postgresql:
+    image: postgres
+    container_name: postgresqldb
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: depotauth
+      PGDATA: /data/postgres_db
+    ports:
+      - "5433:5433"
+    volumes:
+      - pgdata:/data/postgres_db
+    networks:
+      - microservices
+
+volumes:
+  postgres:
+
 networks:
   microservices:
     driver: bridge

@@ -5,19 +5,22 @@
 	
 	<!-- parent -->
 	<parent>
-		<groupId>com.depot</groupId>
-		<artifactId>sys</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.5.5</version>
+		<relativePath/>
 	</parent>
 
 	<!-- proyecto -->
 	<groupId>com.depot</groupId>
 	<artifactId>server-config</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<name>server-config</name>
-	<description></description>
+	<description>Servidor de configuraciones</description>
 	
 	<!-- propiedades -->
 	<properties>
+		<java.version>21</java.version>
 		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 
@@ -34,7 +37,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>

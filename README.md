@@ -12,7 +12,7 @@ Inicialmente las contratas deben de realizar el análisis de materiales necesari
 En caso el cliente no cuente con disponibilidad de algún material, se informa a las contratas; ellos gestionaran internamente un pedido de materiales, que funcionara a modo de préstamo hacia el cliente. Los materiales utilizados en las obras y pertenecientes a las contratas deben ser repuestos por el cliente posteriormente.
 
 
-![Diagrama de Caso de Uso](./readme_utils/pedido_materiales.png)
+![Diagrama de Caso de Uso](./utils/pedido_materiales.png)
 ---
 
 ### 2. Proceso de despacho de materiales
@@ -25,7 +25,7 @@ Los materiales confirmados se despachan en Packings y/o packages, cada uno de el
 Cuando los materiales para las obras o trabajos programados provienen del almacén interno de las contratas, se analiza gestiona y despacha de forma interna, asignando igualmente los materiales a un PDI a modo de préstamo.
 
 
-![Diagrama de Caso de Uso](./readme_utils/compra_materiales.png)
+![Diagrama de Caso de Uso](./utils/compra_materiales.png)
 ---
 
 ### 3. Proceso de entrega y cuadre de materiales
@@ -35,12 +35,12 @@ Después de enviarse los materiales en Packings y/o packages, estos son recibido
 Cuando se tiene pequeñas partes de material en condiciones idóneas para el uso, se reingresa a almacén como merma; cuando se tiene material sobrante por paquetes y/o material entero, en buenas condiciones, se reingresa a almacén como stock. También existen casos en los cuales el material sobrante y/o recuperado no se encuentra en condiciones para ser reutilizado; en estos casos el material se registra como recupero.
 
 
-![Diagrama de Caso de Uso](./readme_utils/recepcion_materiales.png)
+![Diagrama de Caso de Uso](./utils/recepcion_materiales.png)
 
-![Diagrama de Caso de Uso](./readme_utils/cuadre_materiales.png)
+![Diagrama de Caso de Uso](./utils/cuadre_materiales.png)
 ---
 
-## Gestión de Materiales - Modelos de Entidades:
+## Gestión de Materiales - Modelos de Entidades
 
 - Colaboradores
 
